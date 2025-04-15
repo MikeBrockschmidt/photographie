@@ -7,11 +7,11 @@ List<GalleryItem> galleryData = [
     imagePath: 'assets/images/basketball_1.jpeg',
   ),
   GalleryItem(
-    imageTitle: 'Adrenalin pur!',
+    imageTitle: 'Paris!',
     imageDate: '14.07.2020',
     imageDescription:
         'Ein Skifahrer in voller Montur fliegt mutig über einen schneebedeckten Hügel, während der klare, blaue Himmel im Hintergrund strahlt. Die Sonne scheint hell, beleuchtet die funkelnden Schneeflocken und wirft lange Schatten auf die Piste. An einem perfekten Wintertag vor einigen Jahren, als der Schnee frisch und die Bedingungen ideal waren, führte dieser Sprung zu einem unvergesslichen Moment voller Adrenalin und Freude.',
-    imagePath: 'assets/images/ski.jpeg',
+    imagePath: 'assets/images/photographie/Paris.jpg',
   ),
   GalleryItem(
     imageTitle: 'Achtung Kurve',
