@@ -20,6 +20,7 @@ class _ImagePageState extends State<ImagePage> {
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         AspectRatio(
           aspectRatio: 16 / 9,
@@ -33,13 +34,32 @@ class _ImagePageState extends State<ImagePage> {
           ),
         ),
         const SizedBox(height: 8),
-        Text(
-          selectedItem.imageTitle,
-          style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-        ),
-        Text(
-          selectedItem.imageDate,
-          style: const TextStyle(fontSize: 14, color: Colors.grey),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 12.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                selectedItem.imageTitle,
+                style:
+                    const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              ),
+              Text(
+                selectedItem.imageDate,
+                style: const TextStyle(fontSize: 14, color: Colors.grey),
+              ),
+              const SizedBox(height: 4),
+              Text(
+                selectedItem.imageDescription,
+                style: const TextStyle(fontSize: 14),
+              ),
+              const SizedBox(height: 4),
+              Text(
+                selectedItem.imagePath,
+                style: const TextStyle(fontSize: 12, color: Colors.grey),
+              ),
+            ],
+          ),
         ),
         const SizedBox(height: 12),
         Expanded(
