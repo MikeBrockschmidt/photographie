@@ -1,59 +1,81 @@
 import 'package:flutter/material.dart';
-import 'package:my_gallery/detail_screen.dart';
-import 'package:my_gallery/gallery_data.dart';
+import 'package:photographie/gallery_data.dart';
 
-class ImagePage extends StatelessWidget {
-  // Konstruktor
+class ImagePage extends StatefulWidget {
   const ImagePage({super.key});
 
-  // Methoden
   @override
-  Widget build(BuildContext context) {
-    return GridView.count(
-      crossAxisCount: 3,
-      mainAxisSpacing: 16,
-      crossAxisSpacing: 16,
-      children: buildImages(context),
-    );
+  State<ImagePage> createState() => _ImagePageState();
+}
+
+class _ImagePageState extends State<ImagePage> {
+  late GalleryItem selectedItem;
+
+  @override
+  void initState() {
+    super.initState();
+    selectedItem = galleryData[0];
   }
 
-  List<Widget> buildImages(BuildContext context) {
-    List<Widget> myWidgets = [];
-
-    for (GalleryItem galleryItem in galleryData) {
-      myWidgets.add(
-        GestureDetector(
-          onTap: () {
-            Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (context) => DetailScreen(
-                  galleryItem: galleryItem,
-                ),
-              ),
-            );
-          },
-          child: Card(
-            child: Column(
-              children: [
-                Expanded(
-                  child: Hero(
-                    tag: galleryItem.imagePath,
-                    child: Image.asset(
-                      galleryItem.imagePath,
-                      width: 150,
-                      height: 150,
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                ),
-                Text(galleryItem.imageTitle),
-              ],
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        AspectRatio(
+          aspectRatio: 16 / 9,
+          child: Hero(
+            tag: selectedItem.imagePath,
+            child: Image.asset(
+              selectedItem.imagePath,
+              fit: BoxFit.cover,
+              width: double.infinity,
             ),
           ),
         ),
-      );
-    }
-
-    return myWidgets;
+        const SizedBox(height: 8),
+        Text(
+          selectedItem.imageTitle,
+          style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+        ),
+        Text(
+          selectedItem.imageDate,
+          style: const TextStyle(fontSize: 14, color: Colors.grey),
+        ),
+        const SizedBox(height: 12),
+        Expanded(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            child: GridView.builder(
+              itemCount: galleryData.length,
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 5,
+                crossAxisSpacing: 8,
+                mainAxisSpacing: 8,
+              ),
+              itemBuilder: (context, index) {
+                final item = galleryData[index];
+                return GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      selectedItem = item;
+                    });
+                  },
+                  child: Card(
+                    clipBehavior: Clip.antiAlias,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: Image.asset(
+                      item.imagePath,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                );
+              },
+            ),
+          ),
+        ),
+      ],
+    );
   }
 }

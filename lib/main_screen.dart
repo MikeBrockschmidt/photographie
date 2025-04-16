@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:my_gallery/pages/about_me_page.dart';
-import 'package:my_gallery/pages/image_page.dart';
+import 'package:photographie/pages/about_me_page.dart';
+import 'package:photographie/pages/image_page.dart';
+import 'package:photographie/pages/eins.dart';
+import 'package:photographie/pages/zwei.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -10,19 +12,24 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  // State
   int _pageIndex = 0;
 
-  List<Widget> pages = [
+  final List<Widget> pages = [
     ImagePage(),
     AboutMePage(),
+    EinsPage(),
+    ZweiPage(),
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("MyGallery"),
+        centerTitle: true,
+        title: Image.asset(
+          'assets/images/photographie/mb-logo-g.jpg',
+          height: 32,
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16),
@@ -37,9 +44,13 @@ class _MainScreenState extends State<MainScreen> {
             _pageIndex = value;
           });
         },
-        destinations: [
-          NavigationDestination(icon: Icon(Icons.image), label: 'Bilder'),
+        destinations: const [
+          NavigationDestination(icon: Icon(Icons.image), label: 'Galerie I'),
           NavigationDestination(icon: Icon(Icons.person), label: 'Über mich'),
+          NavigationDestination(
+              icon: Icon(Icons.music_note), label: 'Galerie Musik'),
+          NavigationDestination(
+              icon: Icon(Icons.camera_alt), label: 'Galerie sw'),
         ],
       ),
     );

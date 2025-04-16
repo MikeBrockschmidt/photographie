@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_gallery/main_screen.dart';
+import 'package:photographie/main_screen.dart';
 
 class MainApp extends StatelessWidget {
   const MainApp({super.key});

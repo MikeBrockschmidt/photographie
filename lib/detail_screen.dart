@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:my_gallery/gallery_data.dart';
+import 'package:photographie/gallery_data.dart';
 
 class DetailScreen extends StatefulWidget {
-  // Attribut
   final GalleryItem galleryItem;
 
-  // Konstruktor
   const DetailScreen({super.key, required this.galleryItem});
 
   @override
@@ -13,17 +11,15 @@ class DetailScreen extends StatefulWidget {
 }
 
 class _DetailScreenState extends State<DetailScreen> {
-  // State
   int? _maxLines = 3;
 
-  // Methoden
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text("Details")),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(10.0),
           child: Column(
             spacing: 16,
             children: [
